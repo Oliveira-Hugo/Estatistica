@@ -39,28 +39,28 @@ void ANOVA(double dados[MAX_GRUPOS][MAX_AMOSTRAS], int num_grupos, int tam_grupo
         som_quad_entre += tam_grupos * pow(med_grupo - med_geral, 2);
     }
 
-    double som_quad_dentre = 0.0;   //som_quad_dentre = Soma dos quadrados dentro dos grupos
+    double som_quad_dentro = 0.0;   //som_quad_dentro = Soma dos quadrados dentro dos grupos
     for (int i = 0; i < num_grupos; i++) {
-        som_quad_dentre += calc_som_quadrados(dados[i], tam_grupos, calc_media(dados[i], tam_grupos));
+        som_quad_dentro += calc_som_quadrados(dados[i], tam_grupos, calc_media(dados[i], tam_grupos));
     }
 
     // Graus de liberdade (GL)
     int gl_entre = num_grupos - 1;
-    int gl_dentre = num_grupos * (tam_grupos - 1);
+    int gl_dentro = num_grupos * (tam_grupos - 1);
 
     // Quadrado médio (QM)
     double qm_entre = som_quad_entre / gl_entre;
-    double qm_dentre = som_quad_dentre / gl_dentre;
+    double qm_dentro = som_quad_dentro / gl_dentro;
 
     // Calcular o F
-    double F = qm_entre / qm_dentre;
+    double F = qm_entre / qm_dentro;
 
     printf("Soma dos Quadrados entre grupos: %.2f\n", som_quad_entre);
-    printf("Soma dos Quadrados dentro dos grupos: %.2f\n", som_quad_dentre);
+    printf("Soma dos Quadrados dentro dos grupos: %.2f\n", som_quad_dentro);
     printf("Graus de Liberdade entre grupos: %d\n", gl_entre);
-    printf("Graus de Liberdade dentro dos grupos: %d\n", gl_dentre);
+    printf("Graus de Liberdade dentro dos grupos: %d\n", gl_dentro);
     printf("Quadrado médio entre grupos: %.2f\n", qm_entre);
-    printf("Quadrado médio dentro dos grupos: %.2f\n", qm_dentre);
+    printf("Quadrado médio dentro dos grupos: %.2f\n", qm_dentro);
     printf("F: %.2f\n", F);
 }
 
